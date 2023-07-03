@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using MyFirstAppWeb.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<MyFirstAppWebContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("MyFirstAppWebContext") ?? throw new InvalidOperationException("Connection string 'MyFirstAppWebContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
