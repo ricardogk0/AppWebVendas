@@ -7,8 +7,16 @@
 <h1>Vendedores</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Adicionar Vendedor</a>
 </p>
+
+<form asp-action="Index" method="get">
+    <p>
+        <input type="text" name="termo" placeholder="Digite o nome do vendedor...">
+        <button type="submit">Buscar</button>
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>

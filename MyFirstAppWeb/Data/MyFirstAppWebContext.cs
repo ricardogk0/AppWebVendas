@@ -14,6 +14,9 @@ namespace MyFirstAppWeb.Data
         {
         }
 
-        public DbSet<MyFirstAppWeb.Models.Vendedor> Vendedor { get; set; } = default!;
+        public DbSet<MyFirstAppWeb.Models.Vendedor> Vendedor { get; set; } 
+        public DbSet<MyFirstAppWeb.Models.Venda> Venda { get; set; }
+        public DbSet<MyFirstAppWeb.Models.Cliente> Cliente { get; set; }
+        public DbSet<MyFirstAppWeb.Models.Item> Item { get; set; }
     }
 }

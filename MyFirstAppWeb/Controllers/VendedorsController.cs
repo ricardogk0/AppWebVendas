@@ -20,11 +20,19 @@ namespace MyFirstAppWeb.Controllers
         }
 
         // GET: Vendedors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string termo)
         {
-              return _context.Vendedor != null ? 
-                          View(await _context.Vendedor.ToListAsync()) :
-                          Problem("Entity set 'MyFirstAppWebContext.Vendedor'  is null.");
+            if (string.IsNullOrEmpty(termo))
+            {
+                return _context.Vendedor != null ? 
+                              View(await _context.Vendedor.ToListAsync()) :
+                              Problem("Entity set 'MyFirstAppWebContext.Vendedor'  is null.");
+            }
+            else
+            {
+                var vendedoresEncontrados = _context.Vendedor.Where(v => v.Nome.Contains(termo)).ToList();
+                return View("Index", vendedoresEncontrados);
+            }
         }
 
         // GET: Vendedors/Details/5
