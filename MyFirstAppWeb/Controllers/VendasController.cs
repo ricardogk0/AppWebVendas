@@ -22,10 +22,17 @@ namespace MyFirstAppWeb.Controllers
         {
             return _context.Venda != null ?
                              View(await _context.Venda.ToListAsync()) :
-                             Problem("Entity set 'MyFirstAppWebContext.Vendedor'  is null.");
+                             Problem("Entity set 'MyFirstAppWebContext.Venda'  is null.");
         }
 
-        [HttpPost]
+        public IActionResult CriarVenda()
+        {
+            List<Vendedor> listaVendedores = _context.Vendedor.ToList();
+            ViewBag.Vendedores = new SelectList(listaVendedores, "Id_Vendedor", "Nome");
+            return View();
+        }
+
+        /*[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Codigo,Nome,SalarioBase")] Vendedor vendedor)
         {
@@ -36,6 +43,6 @@ namespace MyFirstAppWeb.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(vendedor);
-        }
+        }*/
     }
 }

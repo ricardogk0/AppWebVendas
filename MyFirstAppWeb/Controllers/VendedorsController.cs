@@ -44,7 +44,7 @@ namespace MyFirstAppWeb.Controllers
             }
 
             var vendedor = await _context.Vendedor
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id_Vendedor == id);
             if (vendedor == null)
             {
                 return NotFound();
@@ -98,7 +98,7 @@ namespace MyFirstAppWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Codigo,Nome,SalarioBase")] Vendedor vendedor)
         {
-            if (id != vendedor.Id)
+            if (id != vendedor.Id_Vendedor)
             {
                 return NotFound();
             }
@@ -112,7 +112,7 @@ namespace MyFirstAppWeb.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VendedorExists(vendedor.Id))
+                    if (!VendedorExists(vendedor.Id_Vendedor))
                     {
                         return NotFound();
                     }
@@ -135,7 +135,7 @@ namespace MyFirstAppWeb.Controllers
             }
 
             var vendedor = await _context.Vendedor
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id_Vendedor == id);
             if (vendedor == null)
             {
                 return NotFound();
@@ -165,7 +165,7 @@ namespace MyFirstAppWeb.Controllers
 
         private bool VendedorExists(int id)
         {
-          return (_context.Vendedor?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Vendedor?.Any(e => e.Id_Vendedor == id)).GetValueOrDefault();
         }
     }
 }

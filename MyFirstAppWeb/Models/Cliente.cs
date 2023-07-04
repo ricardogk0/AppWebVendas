@@ -1,8 +1,11 @@
-﻿namespace MyFirstAppWeb.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MyFirstAppWeb.Models
 {
     public class Cliente
     {
-        public int Id { get; set; }
+        [Key]
+        public int Id_Cliente { get; set; }
         public string Codigo { get; set; }
         public string Nome { get; set; }
         public string Email { get; set; }
@@ -12,7 +15,7 @@
 
         public Cliente(int id, string codigo, string nome, string email, string telefone, string cpf_Cnpj, int tipoCliente)
         {
-            Id = id;
+            Id_Cliente = id;
             Codigo = codigo;
             Nome = nome;
             Email = email;

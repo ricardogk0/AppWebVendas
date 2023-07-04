@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyFirstAppWeb.Models
 
 {
     public class Vendedor
     {
-        public int Id { get; set; }
+        [Key]
+        public int Id_Vendedor { get; set; }
         public int Codigo { get; set; }
         public string Nome { get; set; }
         public double SalarioBase { get; set; }
@@ -16,7 +18,7 @@ namespace MyFirstAppWeb.Models
 
         public Vendedor(int id, int codigo, string nome, double salarioBase)
         {
-            Id = id;
+            Id_Vendedor = id;
             Codigo = codigo;
             Nome = nome;
             SalarioBase = salarioBase;
