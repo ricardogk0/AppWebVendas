@@ -23,6 +23,11 @@
                  @Html.ValidationMessageFor(model => model.Vendedor, "", new { @class = "text-danger" })
             </div>
             <div class="form-group">
+                 @Html.LabelFor(model => model.Item, "Itens:")
+                 @Html.DropDownListFor(model => model.Item, ViewBag.Itens as SelectList, "-- Selecione um Item --", new { @class = "form-control" })
+                 @Html.ValidationMessageFor(model => model.Item, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
                 <label asp-for="Quantidade" class="control-label"></label>
                 <input asp-for="Quantidade" class="form-control" />
                 <span asp-validation-for="Quantidade" class="text-danger"></span>

@@ -28,8 +28,18 @@ namespace MyFirstAppWeb.Controllers
         public IActionResult CriarVenda()
         {
             List<Vendedor> listaVendedores = _context.Vendedor.ToList();
+            List<Item> listaItens = _context.Item.ToList();
+            ViewBag.Itens = new SelectList(listaItens, "Id_item", "Descricao");
             ViewBag.Vendedores = new SelectList(listaVendedores, "Id_Vendedor", "Nome");
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddItem(ItemVenda itemVenda, double quantidade)
+        {
+            
+            
         }
 
         /*[HttpPost]
