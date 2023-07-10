@@ -1,0 +1,55 @@
+﻿@model MyFirstAppWeb.Models.Venda
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Venda</h4>
+<hr />
+
+<div>
+    <ul id="itens-escolhidos">
+        <div>
+            <h3>Itens Disponíveis:</h3>
+            <select id="itens-disponiveis" name="itens-disponiveis">
+                @foreach (var item in ViewBag.ItensDisponiveis)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+            <button id="adicionar-item">Adicionar Item</button>
+        </div>
+    </ul>
+</div>
+
+<div class="form-group">
+    <input type="submit" value="Create" class="btn btn-primary" />
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            // Manipula o evento de clique no botão "Adicionar Item"
+            $('#adicionar-item').click(function(e) {
+                e.preventDefault();
+
+                // Obtém os valores do item selecionado
+                var itemId = $('#itens-disponiveis').val();
+                var itemDescricao = $('#itens-disponiveis option:selected').text();
+
+                // Cria um novo elemento na lista de itens escolhidos
+                var novoItem = $('<li>').text(itemDescricao);
+                $('#itens-escolhidos').append(novoItem);
+
+                // Limpa a seleção do item disponível
+                $('#itens-disponiveis').val('');
+            });
+        });
+    </script>
+}

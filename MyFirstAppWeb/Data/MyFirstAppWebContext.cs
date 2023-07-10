@@ -9,6 +9,7 @@ namespace MyFirstAppWeb.Data
 {
     public class MyFirstAppWebContext : DbContext
     {
+
         public MyFirstAppWebContext (DbContextOptions<MyFirstAppWebContext> options)
             : base(options)
         {
@@ -18,5 +19,6 @@ namespace MyFirstAppWeb.Data
         public DbSet<MyFirstAppWeb.Models.Venda> Venda { get; set; }
         public DbSet<MyFirstAppWeb.Models.Cliente> Cliente { get; set; }
         public DbSet<MyFirstAppWeb.Models.Item> Item { get; set; }
+        public DbSet<MyFirstAppWeb.Models.ItemVenda> ItemVenda { get; set; }
     }
 }

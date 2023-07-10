@@ -9,6 +9,15 @@
 <p>
     <a asp-action="Create">Adicionar novo item</a>
 </p>
+
+<form asp-action="Index" method="get">
+    <p>
+        <input type="text" name="termo" placeholder="Item...">
+        <button type="submit">Buscar</button>
+        <a asp-action="Index">Voltar</a>
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>

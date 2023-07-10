@@ -20,11 +20,19 @@ namespace MyFirstAppWeb.Controllers
         }
 
         // GET: Items
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string termo)
         {
-              return _context.Item != null ? 
+            if (string.IsNullOrEmpty(termo))
+            {
+                return _context.Item != null ? 
                           View(await _context.Item.ToListAsync()) :
                           Problem("Entity set 'MyFirstAppWebContext.Item'  is null.");
+            }
+            else
+            {
+                var itensEncontrados = _context.Item.Where(v => v.Descricao.Contains(termo)).ToList();
+                return View("Index", itensEncontrados);
+            }
         }
 
         // GET: Items/Details/5

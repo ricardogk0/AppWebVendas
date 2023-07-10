@@ -34,10 +34,7 @@ namespace MyFirstAppWeb.Models
             vendas.Remove(v);
         }
 
-        public double TotalVendas(DateTime inicial, DateTime final)
-        {
-            return vendas.Where(v => v.Data >= inicial && v.Data <= final).Sum(v => v.Valor);
-        }
+        
 
     }
 }
