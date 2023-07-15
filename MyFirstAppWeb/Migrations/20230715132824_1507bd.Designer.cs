@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyFirstAppWeb.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyFirstAppWeb.Migrations
 {
     [DbContext(typeof(MyFirstAppWebContext))]
-    partial class MyFirstAppWebContextModelSnapshot : ModelSnapshot
+    [Migration("20230715132824_1507bd")]
+    partial class _1507bd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,89 +28,75 @@ namespace MyFirstAppWeb.Migrations
                 {
                     b.Property<int>("Id_Cliente")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id_cliente");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_Cliente"));
 
                     b.Property<string>("Codigo")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("codigo");
+                        .HasColumnType("text");
 
                     b.Property<string>("Cpf_Cnpj")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("cpf_cnpj");
+                        .HasColumnType("text");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("email");
+                        .HasColumnType("text");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("nome");
+                        .HasColumnType("text");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("telefone");
+                        .HasColumnType("text");
 
                     b.Property<int>("TipoCliente")
-                        .HasColumnType("integer")
-                        .HasColumnName("tipo_cliente");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id_Cliente");
 
-                    b.ToTable("cliente");
+                    b.ToTable("Cliente");
                 });
 
             modelBuilder.Entity("MyFirstAppWeb.Models.Item", b =>
                 {
                     b.Property<int>("Id_item")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id_item");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_item"));
 
                     b.Property<string>("Codigo")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("codigo");
+                        .HasColumnType("text");
 
                     b.Property<string>("Descricao")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("descricao");
+                        .HasColumnType("text");
 
                     b.Property<double>("Preco")
-                        .HasColumnType("double precision")
-                        .HasColumnName("preco");
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id_item");
 
-                    b.ToTable("item");
+                    b.ToTable("Item");
                 });
 
             modelBuilder.Entity("MyFirstAppWeb.Models.ItemVenda", b =>
                 {
                     b.Property<int>("IdItemVenda")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id_item_venda");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdItemVenda"));
 
                     b.Property<int>("CodItem")
-                        .HasColumnType("integer")
-                        .HasColumnName("cod_item");
+                        .HasColumnType("integer");
 
                     b.Property<double>("Quantidade")
-                        .HasColumnType("double precision")
-                        .HasColumnName("quantidade");
+                        .HasColumnType("double precision");
 
                     b.Property<int?>("VendaIdVenda")
                         .HasColumnType("integer");
@@ -117,69 +105,59 @@ namespace MyFirstAppWeb.Migrations
 
                     b.HasIndex("VendaIdVenda");
 
-                    b.ToTable("item_venda");
+                    b.ToTable("ItemVenda");
                 });
 
             modelBuilder.Entity("MyFirstAppWeb.Models.Venda", b =>
                 {
                     b.Property<int>("IdVenda")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id_venda");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdVenda"));
 
                     b.Property<int>("CodCliente")
-                        .HasColumnType("integer")
-                        .HasColumnName("cod_cliente");
+                        .HasColumnType("integer");
 
                     b.Property<int>("CodVendedor")
-                        .HasColumnType("integer")
-                        .HasColumnName("cod_vendedor");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("Data")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("data");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Numero_Cupom")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("numero_cupom");
+                        .HasColumnType("text");
 
                     b.Property<double>("ValorTotal")
-                        .HasColumnType("double precision")
-                        .HasColumnName("valor_total");
+                        .HasColumnType("double precision");
 
                     b.HasKey("IdVenda");
 
-                    b.ToTable("venda");
+                    b.ToTable("Venda");
                 });
 
             modelBuilder.Entity("MyFirstAppWeb.Models.Vendedor", b =>
                 {
                     b.Property<int>("Id_Vendedor")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id_vendedor");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_Vendedor"));
 
                     b.Property<int>("Codigo")
-                        .HasColumnType("integer")
-                        .HasColumnName("codigo");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("nome");
+                        .HasColumnType("text");
 
                     b.Property<double>("SalarioBase")
-                        .HasColumnType("double precision")
-                        .HasColumnName("salario_base");
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id_Vendedor");
 
-                    b.ToTable("vendedores");
+                    b.ToTable("Vendedor");
                 });
 
             modelBuilder.Entity("MyFirstAppWeb.Models.ItemVenda", b =>

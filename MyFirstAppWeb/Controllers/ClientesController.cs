@@ -10,90 +10,87 @@ using MyFirstAppWeb.Models;
 
 namespace MyFirstAppWeb.Controllers
 {
-    public class VendasController : Controller
+    public class ClientesController : Controller
     {
         private readonly MyFirstAppWebContext _context;
 
-
-        public VendasController(MyFirstAppWebContext context)
+        public ClientesController(MyFirstAppWebContext context)
         {
             _context = context;
         }
 
-        // GET: Vendas
+        // GET: Clientes
         public async Task<IActionResult> Index()
         {
-              return _context.Venda != null ? 
-                          View(await _context.Venda.ToListAsync()) :
-                          Problem("Entity set 'MyFirstAppWebContext.Venda'  is null.");
+              return _context.Cliente != null ? 
+                          View(await _context.Cliente.ToListAsync()) :
+                          Problem("Entity set 'MyFirstAppWebContext.Cliente'  is null.");
         }
 
-        // GET: Vendas/Details/5
+        // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Venda == null)
+            if (id == null || _context.Cliente == null)
             {
                 return NotFound();
             }
 
-            var venda = await _context.Venda
-                .FirstOrDefaultAsync(m => m.IdVenda == id);
-            if (venda == null)
+            var cliente = await _context.Cliente
+                .FirstOrDefaultAsync(m => m.Id_Cliente == id);
+            if (cliente == null)
             {
                 return NotFound();
             }
 
-            return View(venda);
+            return View(cliente);
         }
 
-        // GET: Vendas/Create
+        // GET: Clientes/Create
         public IActionResult Create()
         {
-            List<Item> itensDisponiveis = _context.Item.ToList();
-            ViewBag.ItensDisponiveis = new SelectList(itensDisponiveis, "Id_item", "Descricao");
             return View();
         }
 
-        // POST: Vendas/Create
+        // POST: Clientes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdVenda,Numero_Cupom,Vendedor,ValorTotal,Data")] Venda venda)
-        {          
+        public async Task<IActionResult> Create([Bind("Id_Cliente,Codigo,Nome,Email,Telefone,Cpf_Cnpj,TipoCliente")] Cliente cliente)
+        {
             if (ModelState.IsValid)
             {
-                _context.Add(venda);
+                _context.Add(cliente);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(venda);
+            return View(cliente);
         }
 
-        // GET: Vendas/Edit/5
+        // GET: Clientes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Venda == null)
+            if (id == null || _context.Cliente == null)
             {
                 return NotFound();
             }
 
-            var venda = await _context.Venda.FindAsync(id);
-            if (venda == null)
+            var cliente = await _context.Cliente.FindAsync(id);
+            if (cliente == null)
             {
                 return NotFound();
             }
-            return View(venda);
+            return View(cliente);
         }
 
-        // POST: Vendas/Edit/5
+        // POST: Clientes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdVenda,Numero_Cupom,ValorTotal,Data")] Venda venda)
+        public async Task<IActionResult> Edit(int id, [Bind("Id_Cliente,Codigo,Nome,Email,Telefone,Cpf_Cnpj,TipoCliente")] Cliente cliente)
         {
-            if (id != venda.IdVenda)
+            if (id != cliente.Id_Cliente)
             {
                 return NotFound();
             }
@@ -102,12 +99,12 @@ namespace MyFirstAppWeb.Controllers
             {
                 try
                 {
-                    _context.Update(venda);
+                    _context.Update(cliente);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VendaExists(venda.IdVenda))
+                    if (!ClienteExists(cliente.Id_Cliente))
                     {
                         return NotFound();
                     }
@@ -118,55 +115,49 @@ namespace MyFirstAppWeb.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(venda);
+            return View(cliente);
         }
 
-        // GET: Vendas/Delete/5
+        // GET: Clientes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Venda == null)
+            if (id == null || _context.Cliente == null)
             {
                 return NotFound();
             }
 
-            var venda = await _context.Venda
-                .FirstOrDefaultAsync(m => m.IdVenda == id);
-            if (venda == null)
+            var cliente = await _context.Cliente
+                .FirstOrDefaultAsync(m => m.Id_Cliente == id);
+            if (cliente == null)
             {
                 return NotFound();
             }
 
-            return View(venda);
+            return View(cliente);
         }
 
-        // POST: Vendas/Delete/5
+        // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Venda == null)
+            if (_context.Cliente == null)
             {
-                return Problem("Entity set 'MyFirstAppWebContext.Venda'  is null.");
+                return Problem("Entity set 'MyFirstAppWebContext.Cliente'  is null.");
             }
-            var venda = await _context.Venda.FindAsync(id);
-            if (venda != null)
+            var cliente = await _context.Cliente.FindAsync(id);
+            if (cliente != null)
             {
-                _context.Venda.Remove(venda);
+                _context.Cliente.Remove(cliente);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult AddItemVenda()
+        private bool ClienteExists(int id)
         {
-            return RedirectToAction("Index", "ItemVendas");
-        }
-
-
-        private bool VendaExists(int id)
-        {
-          return (_context.Venda?.Any(e => e.IdVenda == id)).GetValueOrDefault();
+          return (_context.Cliente?.Any(e => e.Id_Cliente == id)).GetValueOrDefault();
         }
     }
 }

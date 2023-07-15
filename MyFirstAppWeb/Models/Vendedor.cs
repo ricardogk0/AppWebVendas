@@ -1,40 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyFirstAppWeb.Models
 
 {
+    [Table("vendedores")]
     public class Vendedor
     {
         [Key]
+        [Column("id_vendedor")]
         public int Id_Vendedor { get; set; }
+        [Column("codigo")]
         public int Codigo { get; set; }
+        [Column("nome")]
         public string Nome { get; set; }
+        [Column("salario_base")]
         public double SalarioBase { get; set; }
-        public ICollection<Venda> vendas { get; set; } = new List<Venda>();
-
-        public Vendedor() { }
-
-        public Vendedor(int id, int codigo, string nome, double salarioBase)
-        {
-            Id_Vendedor = id;
-            Codigo = codigo;
-            Nome = nome;
-            SalarioBase = salarioBase;
-        }
-
-        public void AddVenda(Venda v)
-        {
-            vendas.Add(v);
-        }
-
-        public void RemoveVenda(Venda v)
-        {
-            vendas.Remove(v);
-        }
-
-        
-
     }
 }
