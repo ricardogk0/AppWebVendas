@@ -163,6 +163,89 @@ namespace MyFirstAppWeb.Controllers
             return RedirectToAction("Index", "ItemVendas");
         }
 
+        [HttpGet]
+        public IActionResult BuscarProduto(string produto)
+        {
+            var PorCodigo = _context.Item.FirstOrDefault(i => i.Codigo == produto);
+            var PorNome = _context.Item.FirstOrDefault(i => i.Descricao == produto);
+
+            if (PorCodigo != null)
+            {
+                var response = new
+                {
+                    item = PorCodigo.Descricao,
+                    preco = PorCodigo.Preco
+                };
+
+                return Json(response);
+            }
+            else if (PorNome != null)
+            {
+                var response = new
+                {
+                    item = PorCodigo.Descricao,
+                    preco = PorCodigo.Preco
+                };
+
+                return Json(response);
+            }
+
+            return NotFound();
+        }
+
+        [HttpGet]
+        public IActionResult BuscarVendedor(string vendedor)
+        {
+            var PorCodigo = _context.Vendedor.FirstOrDefault(v => v.Codigo.ToString() == vendedor);
+            var PorNome = _context.Vendedor.FirstOrDefault(v => v.Nome == vendedor);
+
+            if (PorCodigo != null)
+            {
+                var response = new
+                {
+                    nome = PorCodigo.Nome
+                };
+                return Json(response);
+            }
+
+            if (PorNome != null)
+            {
+                var response = new
+                {
+                    nome = PorCodigo.Nome
+                };
+                return Json(response);
+            }
+
+            return NotFound();
+        }
+
+        [HttpGet]
+        public IActionResult BuscarCliente(string cliente)
+        {
+            var PorCodigo = _context.Cliente.FirstOrDefault(v => v.Codigo == cliente);
+            var PorNome = _context.Cliente.FirstOrDefault(v => v.Nome == cliente);
+
+            if (PorCodigo != null)
+            {
+                var response = new
+                {
+                    nome = PorCodigo.Nome
+                };
+                return Json(response);
+            }
+
+            if (PorNome != null)
+            {
+                var response = new
+                {
+                    nome = PorCodigo.Nome
+                };
+                return Json(response);
+            }
+
+            return NotFound();
+        }
 
         private bool VendaExists(int id)
         {

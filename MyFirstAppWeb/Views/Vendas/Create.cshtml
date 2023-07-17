@@ -17,9 +17,11 @@
     </tr>
    </thead>
    <tbody>
-      <td><input type="text" name="Vendedor[]" /></td>
-      <td><input type="text" name="Cliente[]" /></td>
+      <td><input type="text" class="vendedor-input" /></td>
+      <td><input type="text" class="cliente-input" /></td>
    </tbody>
+
+
    <thead>
     <tr>
       <th>Produto</th>
@@ -30,16 +32,13 @@
   </thead>
   <tbody>
     <tr>
-      <td><input type="text" name="produto[]" /></td>
-      <td><input type="number" name="quantidade[]" /></td>
-      <td><input type="number" name="preco[]" /></td>
-      <td></td>
+      <td><input type="text" class="produto-input" /></td>
+      <td><input type="number" class="quantidade-input" /></td>
+      <td><input type="number" class="preco-input" /></td>
+      <td><input type="number" class="total-input" /></td>
     </tr>
-    <!-- Adicione quantas linhas forem necessárias -->
-  </tbody>
 </table>
 
-<a asp-action="AddItemVenda">Adicionar Item</a>
 
 <div class="form-group">
     <input type="submit" value="Create" class="btn btn-primary" />
