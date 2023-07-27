@@ -49,8 +49,6 @@ namespace MyFirstAppWeb.Controllers
         // GET: Vendas/Create
         public IActionResult Create()
         {
-            List<Item> itensDisponiveis = _context.Item.ToList();
-            ViewBag.ItensDisponiveis = new SelectList(itensDisponiveis, "Id_item", "Descricao");
             return View();
         }
 
@@ -245,6 +243,13 @@ namespace MyFirstAppWeb.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpGet]
+        public IActionResult PesquisarVendedores()
+        {
+            var vendedores = _context.Vendedor.ToList();
+            return Json(vendedores);
         }
 
         private bool VendaExists(int id)

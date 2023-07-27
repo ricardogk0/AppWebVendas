@@ -75,4 +75,27 @@
         var tr = $(this).closest('tr');
         calcularTotal(tr);
     });
+
+    $(document).ready(function () {
+        // Manipulador de evento para o clique do botão de lupa
+        $("#btnPesquisarVendedores").on("click", function () {
+            $.ajax({
+                url: "/Vendas/PesquisarVendedores",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    // Montar a lista de vendedores e exibir no local adequado
+                    var listaVendedores = "<ul>";
+                    $.each(data, function (index, vendedor) {
+                        listaVendedores += "<li>" + vendedor.Nome + "</li>";
+                    });
+                    listaVendedores += "</ul>";
+                    $("#listaVendedores").html(listaVendedores);
+                },
+                error: function () {
+                    alert("Ocorreu um erro ao buscar os vendedores.");
+                }
+            });
+        });
+    });
 });

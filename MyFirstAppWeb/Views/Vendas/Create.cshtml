@@ -4,40 +4,57 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Registrar Venda</h1>
 
 <h4>Venda</h4>
 <hr />
 
 <table>
-  <thead>
-    <tr>
-        <th>Vendedor</th>
-        <th>Cliente</th>
-    </tr>
-   </thead>
-   <tbody>
-      <td><input type="text" class="vendedor-input" /></td>
-      <td><input type="text" class="cliente-input" /></td>
-   </tbody>
+    <thead>
+        <tr>
+            <th>Nº Cupom</th>
+        </tr>
+    </thead>
+    <thead>
+        <tr>
+            <th>Vendedor</th>
+            <th>Cliente</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>
+                <input type="text" class="vendedor-input" />
+                <button type="button" class="btn btn-primary btn-sm" id="btnPesquisarVendedores">
+                    <i class="fas fa-search"></i>
+                </button>
+            </th>
+            <th><input type="text" class="cliente-input" /><button type="submit" class="btn btn-primary btn-sm"><i class="fas fa-search"></i></button></th>
+        </tr>
 
+    </tbody>
 
-   <thead>
-    <tr>
-      <th>Produto</th>
-      <th>Quantidade</th>
-      <th>Preço Unitário</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><input type="text" class="produto-input" /></td>
-      <td><input type="number" class="quantidade-input" /></td>
-      <td><input type="number" class="preco-input" /></td>
-      <td><input type="number" class="total-input" /></td>
-    </tr>
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Preço Unitário</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <input type="text" class="produto-input" /><div class="input-group-append">
+                    <span class="input-group-text seta-icon"><i class="fas fa-caret-down"></i></span>
+                </div>
+            </td>
+            <td><input type="number" class="quantidade-input" /></td>
+            <td><input type="number" class="preco-input" /></td>
+            <td><input type="number" class="total-input" /></td>
+        </tr>
 </table>
+
 
 
 <div class="form-group">
